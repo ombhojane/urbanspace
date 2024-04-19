@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Urban Space</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<link rel="stylesheet" href="../static/predict.css" /> 
+<link rel="stylesheet" href="../static/styles.css" />
+<script src="https://cdn.maptiler.com/maptiler-sdk-js/v1.2.0/maptiler-sdk.umd.min.js"></script>
+<script src="../static/predict.js"></script>
+<meta name="description" content="Urban Space - Bringing AI-powered agrotourism planning to Indian farms.">
+<style>
+  .footer {
+    background-color: #f0f9ff; /* Footer background to match the theme */
+    color: #333333; /* Footer text color */
+    padding: 20px 0;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Navigation -->
+    <nav class="flex justify-between items-center py-6">
+      <a href="/" class="text-2xl font-bold text-gray-800">Urban Space</a>
+      <div class="menu-toggle" onclick="toggleMenu()">
+        <i class="fas fa-bars fa-2x"></i>
+      </div>
+      <div class="nav-links hidden md:flex">
+        <a href="/predict" class="text-gray-600 mx-2">Explore City</a>
+        <a href="/visualize" class="text-gray-600 mx-2">Visualize</a>
+        <a href="/generate" class="text-gray-600 mx-2">Generate</a>
+      </div>
+    </nav>
+
+<!-- Main Content -->
+<div class="container mx-auto px-4 py-8 text-center">
+
+  <div class="mt-4 text-green-700 max-w-3xl mx-auto text-left pb-1">
+    <h2 class="text-xl font-semibold mb-3">Quick Start Guide</h2>
+    <p class="mb-4">
+        <strong>Step 1:</strong> Enter the name of your city in the provided input field. This sets the initial point for exploring potential agrotourism areas on your land.
+    </p>
+    <p class="mb-4">
+        <strong>Step 2:</strong> Once the map loads, view the geographical layout of your city. The map provides a detailed view that includes terrain and urban areas for precise planning.
+    </p>
+    <p class="mb-4">
+        <strong>Step 3:</strong> Use the map's interactive features such as panning and zooming to locate and focus on the specific area of your farm. This step is crucial for detailed planning and visualization.
+    </p>
+    <p class="mb-4">
+        <strong>Step 4:</strong> Capture or screenshot the area of interest directly from the map. This image can be used in your planning documents or submitted for further analysis if required.
+    </p>
+    <p class="mb-4">
+        Explore your land's potential for agrotourism with our user-friendly map tool. Efficiently plan and visualize the possible enhancements to turn your farm into a vibrant tourist destination.
+    </p>
+</div>
+
+  
+  <div class="flex flex-col items-center justify-center min-h-screen bg-lightgreen">
+    <h1 class="mb-4 text-xl font-semibold text-gray-700" style="padding-bottom: 10px;">Enter City Name to View Map</h1>
+    <form id="locationForm" class="mb-4" >
+        <input type="text" id="cityName" name="cityName" placeholder="Enter city name"
+            class="px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500">
+        <button type="submit"
+            class="px-4 py-2 ml-2 text-white bg-green-600 rounded-md shadow hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-opacity-50">
+            Show Map
+        </button>
+    </form>
+    
+    <div id="map" style="width: 80%; height: 70vh;" class="w-full rounded-lg shadow-xl"></div>
+</div>
+
+
+</div>
+
+
+
+
+
+    <!-- Footer -->
+    <footer class="footer bg-green-50">
+      <p class="text-gray-800">&copy; 2024 Urban Space. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <script>
+    maptilersdk.config.apiKey = 'Wpk96wk7ElfkCYyaHujR';
+
+    let map = null;
+    const defaultCoordinates = { latitude: 19.0760, longitude: 72.8777 }; // Coordinates for Mumbai
+
+    function initializeOrUpdateMap(latitude, longitude) {
+        if (map) {
+            map.flyTo([longitude, latitude], 14);
+        } else {
+            map = new maptilersdk.Map({
+                container: 'map',
+                style: 'hybrid',
+                center: [longitude, latitude],
+                zoom: 14
+            });
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize map with default coordinates
+        initializeOrUpdateMap(defaultCoordinates.latitude, defaultCoordinates.longitude);
+
+        const locationForm = document.getElementById('locationForm');
+        locationForm.addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const cityName = document.getElementById('cityName').value;
+            const response = await fetch(`/get_location?city=${cityName}`);
+            const data = await response.json();
+
+            if (data.latitude && data.longitude) {
+                initializeOrUpdateMap(data.latitude, data.longitude);
+            } else {
+                alert('Location not found. Please try another city name.');
+            }
+        });
+    });
+
+    function toggleMenu() {
+        var navigation = document.querySelector('.nav-links');
+        navigation.classList.toggle('mobile-menu');
+    }
+</script>
+
+
+  <script>
+    function toggleMenu() {
+      var navigation = document.querySelector('.nav-links');
+      navigation.classList.toggle('mobile-menu');
+    }
+
+   
+  </script>
+</body>
+</html>

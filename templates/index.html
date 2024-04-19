@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Urban Space Agrotourism Planner</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<link rel="stylesheet" href="../static/styles.css">
+<link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/RZdBhp6Q/herocropped.png">
+<style>
+  /* Custom styles for broader hero section and minimal footer */
+  .hero-section {
+    padding: 40px 0; /* Increase padding for a broader look */
+    background-color: #f0f9ff; /* Light green background */
+    color: #333; /* Adjust text color for better contrast */
+  }
+  .footer {
+    background-color: #f0f9ff; /* Footer background to match the theme */
+    color: #333; /* Footer text color */
+    padding: 20px 0;
+    text-align: center;
+  }
+  .feature-btn {
+    display: inline-block;
+    background-color: #4CAF50; /* Button color to match theme */
+    color: white;
+    padding: 10px 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+  }
+  .feature-btn:hover {
+    background-color: #45a049; /* Darker shade on hover */
+  }
+</style>
+</head>
+<body>
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <nav class="flex justify-between items-center py-6">
+      <a href="/" class="text-2xl font-bold text-gray-800">Urban Space</a>
+      <div class="menu-toggle" onclick="toggleMenu()">
+        <i class="fas fa-bars fa-2x"></i>
+      </div>
+      <div class="nav-links hidden md:flex">
+        <a href="/predict" class="text-gray-600 mx-2">Explore City</a>
+        <a href="/visualize" class="text-gray-600 mx-2">Visualize</a>
+        <a href="/generate" class="text-gray-600 mx-2">Generate</a>
+      </div>
+    </nav>
+
+    <!-- Hero Banner with Value Proposition -->
+    <div class="hero-section text-center py-20 bg-green-50">
+      <h1 class="text-5xl font-bold">Transform Urban landscapes into Green cities</h1>
+      <p class="text-xl mt-4">Discover and transform vacant city spaces into vibrant green areas.      </p>
+      <!-- <img src="https://i.postimg.cc/RZdBhp6Q/herocropped.png" alt="Hero Image" class="mx-auto mt-8"> -->
+      <!-- <img src="https://i.ibb.co/09LPpRQ/image.png" alt="image" class="mx-auto mt-8" style="width: 80%; height: auto;"> -->
+      <img src='https://i.postimg.cc/NfLNYkTx/image.png' alt="Hero Image" class="mx-auto mt-8" >
+      </div>
+
+<section class="py-10">
+  <h2 class="text-3xl font-bold text-gray-800 text-center mb-6">Image Generator for Green Spaces</h2>
+  <p class="text-xl text-gray-600 text-center mb-6"> Compare the current urban landscape with the envisioned green space implemented.</p>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <!-- Before Image -->
+      <div class="text-center">
+          <!-- <img src="https://i.postimg.cc/RCw9z1Kv/Screenshot-2024-02-14-205114.png" alt="Original Farm" class="mx-auto shadow-lg rounded-lg"> -->
+          <img src='https://i.postimg.cc/pLjMVH8k/image.png' alt="Original Place" class="mx-auto shadow-lg rounded-lg">
+          <p class="text-xl text-gray-800 mb-2" style="padding: 17px;">Before Transformation: City with vacant spaces</p>
+
+      </div>
+      <!-- After Image -->
+      <div class="text-center">
+          <!-- <img src="https://i.postimg.cc/3JZLXW5X/after.png" alt="Farm with Vineyard service Implemented" class="mx-auto shadow-lg rounded-lg"> -->
+          <img src='https://i.postimg.cc/XJ7P5SZR/image.png' class="mx-auto shadow-lg rounded-lg">
+          <p class="text-xl text-gray-800 mb-2" style="padding: 17px;">After Transformation implementation: City with Green Spaces </p>
+
+      </div>
+  </div>
+</section>
+
+
+  <!-- Section: Video Explainer -->
+  <section class="py-10">
+      <h2 class="text-3xl font-bold text-gray-800 text-center mb-6">How It Works</h2>
+      <div class="flex justify-center">
+        <iframe width="924" height="522" src="https://www.youtube.com/embed/2FaBmpFYylQ?si=jCcRZT-5MG6UOQ0_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+  </section>
+
+  <h2 class="text-4xl font-bold text-gray-800 text-center my-10">Features🌿</h2>
+
+  <section class="flex flex-col md:flex-row justify-between items-center py-10">
+      <div class="w-full md:w-1/2 mb-4 md:mb-0">
+          <img src="https://i.ibb.co/9yVmR8r/image.png" alt="image" height="900" width="600" alt="City map exploration for agrotourism planning." class="mx-auto">
+      </div>
+      <div class="w-full md:w-1/2 px-8">
+          <h2 class="text-4xl font-bold text-gray-800 mb-4">Explore City</h2>
+          <p class="text-xl text-gray-600">Enter your city name to access a detailed interactive map. Pan and zoom to explore different areas, and capture images of specific regions for your projects. This tool aids in strategic planning and site selection by providing a granular view of the urban layout.          </p>
+          <a href="/explore" class="feature-btn">Explore City</a>
+      </div>
+  </section>
+  
+  <section class="flex flex-col md:flex-row justify-between items-center py-10">
+      <div class="w-full md:w-1/2 order-2 md:order-1 px-8">
+          <h2 class="text-4xl font-bold text-gray-800 mb-4">Identify Vacant Spaces in City</h2>
+          <p class="text-xl text-gray-600">Upload an image of your city and AI detects vacant spaces within it. Gain insights into unused areas and receive detailed reports on space availability and characteristics. This feature supports efficient land management and development planning.          </p>
+          <a href="/identify" class="feature-btn">Find Spaces</a>
+      </div>
+      <div class="w-full md:w-1/2 mb-4 md:mb-0 order-1 md:order-2">
+          <img src="https://i.ibb.co/SfM6wNW/image.png" height="900" width="600" alt="Identify vacant spaces for agrotourism" class="mx-auto">
+      </div>
+  </section>
+  
+  <section class="flex flex-col md:flex-row justify-between items-center py-10">
+      <div class="w-full md:w-1/2 mb-4 md:mb-0">
+      <img src="https://i.ibb.co/zm9XNYH/f3e0eeb6-082f-4094-8ada-37faf53e9ffb.webp" height="200" width="600" alt="Visualize future green spaces" class="mx-auto">   
+
+      </div>
+      <div class="w-full md:w-1/2 px-8">
+          <h2 class="text-4xl font-bold text-gray-800 mb-4">Visualize Greenery</h2>
+          <p class="text-xl text-gray-600">Upload land images to visualize how green spaces can be developed on your vacant spaces. See transformative previews of potential projects and explore different landscaping options. This visualization assists in better understanding the aesthetic and functional potential of your land.          </p>
+          <a href="/visualize" class="feature-btn">Visualize Greenery</a>
+      </div>
+  </section>
+  
+
+ 
+  <footer class="footer bg-green-50">
+    <p class="text-gray-800">&copy; 2024 Urban Space. All rights reserved.</p>
+  </footer>
+
+</div>
+
+<script>
+  function toggleMenu() {
+    var navigation = document.querySelector('.nav-links');
+    navigation.classList.toggle('mobile-menu');
+  }
+</script>
+</body>
+</html>
