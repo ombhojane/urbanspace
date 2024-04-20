@@ -14,8 +14,8 @@
 <meta name="description" content="Urban Space - Bringing AI-powered agrotourism planning to Indian farms.">
 <style>
   .footer {
-    background-color: #f0f9ff; /* Footer background to match the theme */
-    color: #333333; /* Footer text color */
+    background-color: #f0f9ff; 
+    color: #333333;
     padding: 20px 0;
     text-align: center;
   }
@@ -24,7 +24,6 @@
 <body>
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
 
-    <!-- Navigation -->
     <nav class="flex justify-between items-center py-6">
       <a href="/" class="text-2xl font-bold text-gray-800">Urban Space</a>
       <div class="menu-toggle" onclick="toggleMenu()">
@@ -37,25 +36,18 @@
       </div>
     </nav>
 
-<!-- Main Content -->
 <div class="container mx-auto px-4 py-8 text-center">
 
   <div class="mt-4 text-green-700 max-w-3xl mx-auto text-left pb-1">
     <h2 class="text-xl font-semibold mb-3">Quick Start Guide</h2>
     <p class="mb-4">
-        <strong>Step 1:</strong> Enter the name of your city in the provided input field. This sets the initial point for exploring potential agrotourism areas on your land.
+        <strong>Step 1:</strong> Enter your city name in the input field, view your city's map, perfom panning and zooming to focus on desired city area, and capture screenshots to find vacant space.
     </p>
     <p class="mb-4">
-        <strong>Step 2:</strong> Once the map loads, view the geographical layout of your city. The map provides a detailed view that includes terrain and urban areas for precise planning.
+        <strong>Step 2:</strong> Upload the screenshot in "Find Spaces" to identify vacant spaces, best areas for green space, accessibility, etc. in selected urban landscape.
     </p>
     <p class="mb-4">
-        <strong>Step 3:</strong> Use the map's interactive features such as panning and zooming to locate and focus on the specific area of your farm. This step is crucial for detailed planning and visualization.
-    </p>
-    <p class="mb-4">
-        <strong>Step 4:</strong> Capture or screenshot the area of interest directly from the map. This image can be used in your planning documents or submitted for further analysis if required.
-    </p>
-    <p class="mb-4">
-        Explore your land's potential for agrotourism with our user-friendly map tool. Efficiently plan and visualize the possible enhancements to turn your farm into a vibrant tourist destination.
+        <strong>Step 3:</strong> Upload the image of vacant space in the "Visualize" tab to receive visualizations of how the green space will look when developed on that vacant area.
     </p>
 </div>
 
@@ -73,13 +65,7 @@
     
     <div id="map" style="width: 80%; height: 70vh;" class="w-full rounded-lg shadow-xl"></div>
 </div>
-
-
 </div>
-
-
-
-
 
     <!-- Footer -->
     <footer class="footer bg-green-50">
@@ -130,15 +116,11 @@
         navigation.classList.toggle('mobile-menu');
     }
 </script>
-
-
   <script>
     function toggleMenu() {
       var navigation = document.querySelector('.nav-links');
       navigation.classList.toggle('mobile-menu');
-    }
-
-   
+    }   
   </script>
 </body>
 </html>
