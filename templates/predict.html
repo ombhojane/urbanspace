@@ -3,20 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Urban Space</title>
+<title>Urban Space - Map Integration</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <link rel="stylesheet" href="../static/predict.css" /> 
 <link rel="stylesheet" href="../static/styles.css" />
 <script src="https://cdn.maptiler.com/maptiler-sdk-js/v1.2.0/maptiler-sdk.umd.min.js"></script>
+<link href="https://cdn.maptiler.com/maptiler-sdk-js/v1.2.0/maptiler-sdk.css" rel="stylesheet" />
 <script src="../static/predict.js"></script>
-<meta name="description" content="Urban Space - Bringing AI-powered urban space planning">
-<link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/XJ7P5SZR/image.png">
-
+<meta name="description" content="Urban Space - Bringing AI-powered agrotourism planning to Indian farms.">
 <style>
   .footer {
-    background-color: #f0f9ff; 
+    background-color: #f0f9ff;
     color: #333333;
     padding: 20px 0;
     text-align: center;
@@ -26,6 +25,7 @@
 <body>
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
 
+    <!-- Navigation -->
     <nav class="flex justify-between items-center py-6">
       <a href="/" class="text-2xl font-bold text-gray-800">Urban Space</a>
       <div class="menu-toggle" onclick="toggleMenu()">
@@ -33,41 +33,39 @@
       </div>
       <div class="nav-links hidden md:flex">
         <a href="/predict" class="text-gray-600 mx-2">Explore City</a>
-        <a href="/generate" class="text-gray-600 mx-2">Find Space</a>
-        <a href="/visualize" class="text-gray-600 mx-2">Visualize Green Space</a>
+        <a href="/visualize" class="text-gray-600 mx-2">Visualize</a>
+        <a href="/generate" class="text-gray-600 mx-2">Generate</a>
       </div>
     </nav>
 
-<div class="container mx-auto px-4 py-8 text-center">
+    <div class="container mx-auto px-4 py-8 text-center">
 
-  <div class="mt-4 text-green-700 max-w-3xl mx-auto text-left pb-1">
-    <h2 class="text-xl font-semibold mb-3">Quick Start Guide</h2>
-    <p class="mb-4">
-        <strong>Step 1:</strong> Enter your city name in the input field, view your city's map, perfom panning and zooming to focus on desired city area, and capture screenshots to find vacant space.
-    </p>
-    <p class="mb-4">
-        <strong>Step 2:</strong> Upload the screenshot in "Find Spaces" to identify vacant spaces, best areas for green space, accessibility, etc. in selected urban landscape.
-    </p>
-    <p class="mb-4">
-        <strong>Step 3:</strong> Upload the image of vacant space in the "Visualize" tab to receive visualizations of how the green space will look when developed on that vacant area.
-    </p>
-</div>
+      <div class="mt-4 text-green-700 max-w-3xl mx-auto text-left pb-1">
+        <h2 class="text-xl font-semibold mb-3">Quick Start Guide</h2>
+        <p class="mb-4">
+            <strong>Step 1:</strong> Enter your city name in the input field, view your city's map, perfom panning and zooming to focus on desired city area, and capture screenshots to find vacant space.
+        </p>
+        <p class="mb-4">
+            <strong>Step 2:</strong> Upload the screenshot in "Find Spaces" to identify vacant spaces, best areas for green space, accessibility, etc. in selected urban landscape.
+        </p>
+        <p class="mb-4">
+            <strong>Step 3:</strong> Upload the image of vacant space in the "Visualize" tab to receive visualizations of how the green space will look when developed on that vacant area.
+        </p>
+    </div>
 
-  
-  <div class="flex flex-col items-center justify-center min-h-screen bg-lightgreen">
-    <h1 class="mb-4 text-xl font-semibold text-gray-700" style="padding-bottom: 10px;">Enter City Name to View Map</h1>
-    <form id="locationForm" class="mb-4" >
-        <input type="text" id="cityName" name="cityName" placeholder="Enter city name"
-            class="px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500">
-        <button type="submit"
-            class="px-4 py-2 ml-2 text-white bg-green-600 rounded-md shadow hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-opacity-50">
-            Show Map
-        </button>
-    </form>
-    
-    <div id="map" style="width: 80%; height: 70vh;" class="w-full rounded-lg shadow-xl"></div>
-</div>
-</div>
+    <!-- Map Input Form -->
+    <div class="flex flex-col items-center justify-center min-h-screen bg-lightgreen">
+        <h1 class="mb-4 text-xl font-semibold text-gray-700">Enter City Name to View Map</h1>
+        <form id="locationForm" class="mb-4">
+            <input type="text" id="cityName" name="cityName" placeholder="Enter city name"
+                class="px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500">
+            <button type="submit"
+                class="px-4 py-2 ml-2 text-white bg-green-600 rounded-md shadow hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-opacity-50">
+                Show Map
+            </button>
+        </form>
+        <div id="map" style="width: 80%; height: 70vh;" class="w-full rounded-lg shadow-xl"></div>
+    </div>
 
     <!-- Footer -->
     <footer class="footer bg-green-50">
@@ -78,51 +76,32 @@
   <script>
     maptilersdk.config.apiKey = 'Wpk96wk7ElfkCYyaHujR';
 
-    let map = null;
-    const defaultCoordinates = { latitude: 19.0760, longitude: 72.8777 }; // Coordinates for Mumbai
-
     function initializeOrUpdateMap(latitude, longitude) {
-        if (map) {
-            map.flyTo([longitude, latitude], 14);
-        } else {
-            map = new maptilersdk.Map({
-                container: 'map',
-                style: 'hybrid',
-                center: [longitude, latitude],
-                zoom: 14
-            });
-        }
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
-        // Initialize map with default coordinates
-        initializeOrUpdateMap(defaultCoordinates.latitude, defaultCoordinates.longitude);
-
-        const locationForm = document.getElementById('locationForm');
-        locationForm.addEventListener('submit', async function(event) {
-            event.preventDefault();
-            const cityName = document.getElementById('cityName').value;
-            const response = await fetch(`/get_location?city=${cityName}`);
-            const data = await response.json();
-
-            if (data.latitude && data.longitude) {
-                initializeOrUpdateMap(data.latitude, data.longitude);
-            } else {
-                alert('Location not found. Please try another city name.');
-            }
+        var map = new maptilersdk.Map({
+            container: 'map',
+            style: 'hybrid',
+            center: [longitude, latitude],
+            zoom: 14
         });
-    });
-
-    function toggleMenu() {
-        var navigation = document.querySelector('.nav-links');
-        navigation.classList.toggle('mobile-menu');
     }
-</script>
-  <script>
+
+    document.getElementById('locationForm').onsubmit = async function(event) {
+        event.preventDefault();
+        const cityName = document.getElementById('cityName').value;
+        const response = await fetch(`/get_location?city=${cityName}`);
+        const data = await response.json();
+
+        if (data.latitude && data.longitude) {
+            initializeOrUpdateMap(data.latitude, data.longitude);
+        } else {
+            alert('Location not found. Please try another city name.');
+        }
+    };
+
     function toggleMenu() {
       var navigation = document.querySelector('.nav-links');
       navigation.classList.toggle('mobile-menu');
-    }   
+    }
   </script>
 </body>
 </html>
